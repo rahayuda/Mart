@@ -20,7 +20,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td><button style="width: 15%;" type="submit">Register</button></td>
+                <td><button type="submit">Register</button></td>
             </tr>
         </table>
     </form>

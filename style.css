@@ -293,7 +293,7 @@ button {
 progress {
     height: 15px; /
     border-radius: 5px; 
-    background-color: #7FC7D9; 
+    background-color: lightgrey; 
 }
 
 progress::-webkit-progress-value {
@@ -301,7 +301,7 @@ progress::-webkit-progress-value {
 }
 
 progress::-webkit-progress-bar {
-    background-color: #7FC7D9; 
+    background-color: lightgrey; 
     border-radius: 5px;
 }
 

@@ -37,7 +37,7 @@ if (isset($_SESSION['userid'])) {
 									<td><?php echo $data['name'] ?></td>
 									<td><?php echo $data['quantity'] ?> pcs</td>
 									<td><?php echo number_format($data['total'], 0, ',', '.') ?></td>
-									<td class="align-right"><i class="fas fa-pencil-alt"></i></td>
+									<td></td>
 									<td><i class="fas fa-trash-alt"></i></td>
 								</tr>
 							</tbody>  

@@ -20,8 +20,8 @@
 				<td></td>
 				<td></td>
 				<td>
-					<button style="width: 15%;" type="submit">Login</button> 
-					<button style="width: 15%;" type="button" onclick="window.location.href='index.php?page=register'">Register</button> 
+					<button type="submit">Login</button> 
+					<button type="button" onclick="window.location.href='index.php?page=register'">Register</button> 
 				</td>
 			</tr>
 		</table>			
