@@ -73,6 +73,6 @@ if (isset($_SESSION['userid'])) {
     </div>
 <?php } else { ?>
     <div class="card">
-        <i class="fas fa-th-list"></i>&nbsp;-<hr>
+        <i class="fas fa-th-list"></i>&nbsp;<hr>
     </div>
     <?php } ?>

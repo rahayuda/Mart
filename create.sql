@@ -12,6 +12,16 @@ CREATE TABLE IF NOT EXISTS `product` (
   PRIMARY KEY (`id`)
 );
 
+-- Table creation for 'customer'
+CREATE TABLE IF NOT EXISTS `customer` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+
 -- Table creation for 'cart'
 CREATE TABLE IF NOT EXISTS `cart` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -26,16 +36,6 @@ CREATE TABLE IF NOT EXISTS `cart` (
   CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
 );
 
--- Table creation for 'customer'
-CREATE TABLE IF NOT EXISTS `customer` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(50) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-);
-
 -- Table creation for 'sales'
 CREATE TABLE IF NOT EXISTS `sales` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -46,23 +46,16 @@ CREATE TABLE IF NOT EXISTS `sales` (
   CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`id_cart`) REFERENCES `cart` (`id`)
 );
 
--- Trigger creation for 'calculate_total'
-DELIMITER $$
-CREATE TRIGGER `calculate_total` BEFORE INSERT ON `cart` FOR EACH ROW BEGIN
-    DECLARE product_price DECIMAL(10, 2);
-    SELECT price INTO product_price FROM product WHERE id = NEW.product_id;
-    SET NEW.total = NEW.quantity * product_price;
-END$$
-DELIMITER ;
-
--- View creation for 'best_product'
-CREATE VIEW `best_product` AS 
-SELECT `c`.`product_id` AS `product_id`, 
-       `p`.`name` AS `product_name`, 
-       SUM(`c`.`quantity`) AS `total_quantity` 
-FROM (`cart` `c` 
-      JOIN `product` `p` 
-      ON (`c`.`product_id` = `p`.`id`)) 
-WHERE `c`.`status` = 'purchased' 
-GROUP BY `c`.`product_id`, `p`.`name` 
-ORDER BY SUM(`c`.`quantity`) DESC;
+INSERT INTO `product` (`id`, `name`, `category`, `stock`, `price`, `image`) VALUES
+(1, 'Laptop', 'Electronics', 100, 5000000.00, 'image/product.png'),
+(2, 'Pencil', 'Stationery', 100, 5000.00, 'image/product.png'),
+(3, 'Mouse', 'Electronics', 100, 200000.00, 'image/product.png'),
+(4, 'Book', 'Stationery', 100, 25000.00, 'image/product.png'),
+(5, 'Soda', 'Beverage', 100, 15000.00, 'image/product.png'),
+(6, 'Printer', 'Electronics', 100, 1000000.00, 'image/product.png'),
+(7, 'Camera', 'Electronics', 100, 3000000.00, 'image/product.png'),
+(8, 'Pen', 'Stationery', 100, 2000.00, 'image/product.png'),
+(9, 'Speaker', 'Electronics', 100, 150000.00, 'image/product.png'),
+(10, 'Notebook', 'Stationery', 100, 10000.00, 'image/product.png'),
+(11, 'Water', 'Beverage', 100, 5000.00, 'image/product.png'),
+(12, 'Phone', 'Electronics', 100, 2000000.00, 'image/product.png');

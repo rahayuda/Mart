@@ -1,5 +1,5 @@
 <?php
-$query = "SELECT * FROM best_product LEFT JOIN product ON best_product.product_id = product.id limit 1";
+$query = "SELECT * FROM cart LEFT JOIN product ON cart.product_id = product.id where status = 'purchased' order by quantity DESC LIMIT 1";
 $result = mysqli_query($con, $query);
 
 if(mysqli_num_rows($result) > 0) {
